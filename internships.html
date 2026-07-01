@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience &amp; Leadership | Akas D Sujith</title>
+  <meta name="description" content="Extracurricular leadership, student representation, and operational management logs of Akas D Sujith. IPM student at IIM Jammu.">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    .exp-wrapper {
+      padding-top: 8rem;
+      min-height: 100vh;
+    }
+    
+    .exp-intro {
+      margin-bottom: 4rem;
+      max-width: 700px;
+    }
+    
+    .exp-intro h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .exp-intro p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    
+    /* Timeline styling */
+    .timeline-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto 8rem;
+      padding-left: 2.5rem;
+    }
+    
+    /* Vertical line */
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: var(--border-subtle);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+    }
+    
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Timeline indicator dot */
+    .timeline-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 0.6rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      border: 3px solid #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+      z-index: 10;
+      transition: var(--transition-smooth);
+    }
+    
+    .timeline-item:hover .timeline-dot {
+      background: #ffffff;
+      transform: scale(1.2);
+    }
+    
+    /* Content Card */
+    .timeline-card {
+      padding: 2.2rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .hover-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.6);
+      transition: none;
+      pointer-events: none;
+    }
+    
+    .timeline-card:hover .hover-progress-bar {
+      width: 100%;
+      transition: width 0.5s linear;
+    }
+    
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      padding: 1.5rem;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .modal-content {
+      background: rgba(15, 15, 15, 0.95);
+      border: 1px solid var(--border-primary);
+      border-radius: 24px;
+      max-width: 1200px;
+      width: 90%;
+      padding: 4.5rem;
+      position: relative;
+      transform: scale(0.9) translateY(20px);
+      transition: var(--transition-smooth);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: var(--transition-smooth);
+    }
+    
+    .close-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .close-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.5;
+    }
+    
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    
+    .modal-body {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    
+    .experience-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    .timeline-item:hover .experience-logo {
+      transform: scale(1.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    
+    .timeline-org {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+    
+    .timeline-date {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    
+    .timeline-body {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    .timeline-body ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .timeline-body li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline-body li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--text-primary);
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .timeline-header {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .timeline-date {
+        align-self: flex-start;
+    }
+    
+    @media (max-width: 768px) {
+      .modal-content {
+        padding: 2.5rem 1.5rem;
+        border-radius: 16px;
+      }
+      .modal-title {
+        font-size: 1.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Glassmorphism Header -->
+  <header class="global-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="signature.png" alt="Akas D Sujith Signature" class="logo-signature">
+      </a>
+      <button class="mobile-nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="internships.html" class="nav-link active">Experience</a></li>
+          <li><a href="academic-journey.html" class="nav-link">Academic Journey</a></li>
+          <li><a href="linkedin.html" class="nav-link">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Timeline Section -->
+  <main class="exp-wrapper">
+    <div class="container">
+      <!-- Section Intro -->
+      <div class="exp-intro">
+        <span class="section-label">Activities &amp; Responsibility</span>
+        <h1 class="gradient-title">Experience &amp; Leadership</h1>
+        <p>A history of student representation, project coordination, and logistics management.</p>
+      </div>
+      
+      <!-- Timeline -->
+      <div class="timeline-container">
+        <!-- Item 1: Debating Society -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-modal="modal-debating">
+            <div class="timeline-header">
+              <div style="display: flex; gap: 1.25rem; align-items: center;">
+                <img src="logo_debating.png" alt="Debating Society, IIM Jammu Logo" class="experience-logo">
+                <div>
+                  <h2 class="timeline-title">Student Coordinator</h2>
+                  <div class="timeline-org">Debating Society, IIM Jammu &middot; Full-time</div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Jammu, Jammu &amp; Kashmir, India &middot; On-site</div>
+                </div>
+              </div>
+              <span class="timeline-date">Oct 2025 &ndash; Present &middot; 10 mos</span>
+            </div>
+            <div class="timeline-body">
+              <ul>
+                <li>Led the coordination of institutional debate championships, managing registrations, event logistics, and scheduling.</li>
+                <li>Liaised with senior administration and external speakers to organize national debating forums and speech panel events.</li>
+                <li>Mentored student speakers and developed frameworks for constructive discussions and argumentation.</li>
+              </ul>
+            </div>
+            <div class="pill-container" style="margin-top: 1.5rem;">
+              <span class="shared-pill">Public Speaking</span>
+              <span class="shared-pill">Event Management</span>
+              <span class="shared-pill">Liaison Operations</span>
+              <span class="shared-pill">Team Coordination</span>
+            </div>
+            <div class="hover-progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Item 2: ATH Club -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-modal="modal-ath">
+            <div class="timeline-header">
+              <div style="display: flex; gap: 1.25rem; align-items: center;">
+                <img src="logo_ath.png" alt="ATH Club - IIM Jammu Logo" class="experience-logo">
+                <div>
+                  <h2 class="timeline-title">Student Coordinator</h2>
+                  <div class="timeline-org">ATH Club - IIM Jammu &middot; Full-time</div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Jammu, Jammu &amp; Kashmir, India &middot; On-site</div>
+                </div>
+              </div>
+              <span class="timeline-date">Oct 2025 &ndash; Present &middot; 10 mos</span>
+            </div>
+            <div class="timeline-body">
+              <ul>
+                <li>Structured weekly meeting schedules, organized internal finance and trade games, and managed database records of club participants.</li>
+                <li>Handled inter-club logistics and coordination for technical/quantitative club events at IIM Jammu.</li>
+                <li>Prepared marketing collateral and social media outlines to maximize club outreach and campus participation.</li>
+              </ul>
+            </div>
+            <div class="pill-container" style="margin-top: 1.5rem;">
+              <span class="shared-pill">Quantitative Finance</span>
+              <span class="shared-pill">Data Management</span>
+              <span class="shared-pill">Club Operations</span>
+              <span class="shared-pill">Outreach Strategy</span>
+            </div>
+            <div class="hover-progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Item 3: Alumni Relations -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-modal="modal-alumni">
+            <div class="timeline-header">
+              <div style="display: flex; gap: 1.25rem; align-items: center;">
+                <img src="logo_alumni.png" alt="Alumni Relations, IIM Jammu Logo" class="experience-logo">
+                <div>
+                  <h2 class="timeline-title">Alumni Relations Member</h2>
+                  <div class="timeline-org">Alumni Relations, IIM Jammu</div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Jammu, Jammu &amp; Kashmir, India</div>
+                </div>
+              </div>
+              <span class="timeline-date">Sep 2025 &ndash; Present &middot; 11 mos</span>
+            </div>
+            <div class="timeline-body">
+              <ul>
+                <li>Built and maintained a structured database connecting alumni across diverse corporate sectors.</li>
+                <li>Coordinated interactive webinars, guest lectures, and networking events to foster student-alumni relations.</li>
+                <li>Crafted news drafts, email newsletters, and annual reports summarizing institutional growth achievements.</li>
+              </ul>
+            </div>
+            <div class="pill-container" style="margin-top: 1.5rem;">
+              <span class="shared-pill">Alumni Engagement</span>
+              <span class="shared-pill">Database Maintenance</span>
+              <span class="shared-pill">Strategic Communications</span>
+              <span class="shared-pill">Event Execution</span>
+            </div>
+            <div class="hover-progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Item 4: EdZpace -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-modal="modal-edzpace">
+            <div class="timeline-header">
+              <div style="display: flex; gap: 1.25rem; align-items: center;">
+                <img src="logo_edzpace.png" alt="EdZpace Logo" class="experience-logo">
+                <div>
+                  <h2 class="timeline-title">Human Resources Intern</h2>
+                  <div class="timeline-org">EdZpace &middot; Internship</div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Dubai, United Arab Emirates &middot; Remote</div>
+                </div>
+              </div>
+              <span class="timeline-date">Oct 2025 &ndash; Mar 2026 &middot; 6 mos</span>
+            </div>
+            <div class="timeline-body">
+              <ul>
+                <li>Supported talent acquisition flows, parsed resumes, scheduled interviews, and updated candidate records.</li>
+                <li>Facilitated remote onboarding setups, assisting new team members with platform accounts and documentation checks.</li>
+                <li>Managed international HR logs, tracking intern cohorts across multiple time zones.</li>
+              </ul>
+            </div>
+            <div class="pill-container" style="margin-top: 1.5rem;">
+              <span class="shared-pill">Talent Acquisition</span>
+              <span class="shared-pill">Remote Onboarding</span>
+              <span class="shared-pill">HR Operations</span>
+              <span class="shared-pill">Database Systems</span>
+            </div>
+            <div class="hover-progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Item 5: Empyrean -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-modal="modal-empyrean">
+            <div class="timeline-header">
+              <div style="display: flex; gap: 1.25rem; align-items: center;">
+                <img src="logo_empyrean.png" alt="Empyrean IIM Jammu Logo" class="experience-logo">
+                <div>
+                  <h2 class="timeline-title">Member - Marketing and Creatives Team</h2>
+                  <div class="timeline-org">Empyrean IIM Jammu &middot; Part-time</div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Jammu, Jammu &amp; Kashmir, India</div>
+                </div>
+              </div>
+              <span class="timeline-date">Sep 2025 &ndash; Mar 2026 &middot; 7 mos</span>
+            </div>
+            <div class="timeline-body">
+              <ul>
+                <li>Designed high-impact visual banners, posters, and digital assets for IIM Jammu's annual cultural festival (Empyrean).</li>
+                <li>Formulated multi-channel social media launch schedules, driving registration metrics across student communities.</li>
+                <li>Collaborated with cross-functional sponsorship and logistics teams to maintain consistent branding lines.</li>
+              </ul>
+            </div>
+            <div class="pill-container" style="margin-top: 1.5rem;">
+              <span class="shared-pill">Graphic Design</span>
+              <span class="shared-pill">Social Media Marketing</span>
+              <span class="shared-pill">Event Branding</span>
+              <span class="shared-pill">Brand Consistency</span>
+            </div>
+            <div class="hover-progress-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modals Overlay Container -->
+  <!-- Modal 1: Debating Society -->
+  <div class="modal-overlay" id="modal-debating">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Expanded View &middot; Leadership</span>
+      <h3 class="modal-title">Student Coordinator &middot; Debating Society</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Role &amp; Responsibility:</strong> Led and managed administrative and logistics pipelines for institutional debate competitions and public speaking programs at IIM Jammu.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Key Contributions:</strong> Organised inter-varsity events, monitored logistics, and managed participant databases. Liaised with internal departments and external guest speakers to align schedule times.
+        </p>
+        <p>
+          <strong>Outcome &amp; Gained Competencies:</strong> Formulated structured training regimes for peer debaters, honed conflict resolution tactics, and built liaison skills through administration engagement.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Public Speaking</span>
+        <span class="shared-pill">Event Logistics</span>
+        <span class="shared-pill">Liaison Coordination</span>
+        <span class="shared-pill">Student Representative</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: ATH Club -->
+  <div class="modal-overlay" id="modal-ath">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Expanded View &middot; Club Management</span>
+      <h3 class="modal-title">Student Coordinator &middot; ATH Club</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Role &amp; Responsibility:</strong> Coordinated club operational schedules, meeting logs, and quantitative finance games to promote financial literacy.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Key Contributions:</strong> Structured weekly trade simulations and interactive portfolio games, and maintained detailed tracking sheets of student club attendees.
+        </p>
+        <p>
+          <strong>Outcome &amp; Gained Competencies:</strong> Streamlined scheduling pipelines and expanded member registration counts through collaborative outreach and social media branding.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Quantitative Finance</span>
+        <span class="shared-pill">Data Management</span>
+        <span class="shared-pill">Club Operations</span>
+        <span class="shared-pill">Outreach Strategy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Alumni Relations -->
+  <div class="modal-overlay" id="modal-alumni">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Expanded View &middot; Corporate Relations</span>
+      <h3 class="modal-title">Alumni Relations Member</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Role &amp; Responsibility:</strong> Served as a representative for student-alumni interfaces, organizing corporate network logs and communication channels.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Key Contributions:</strong> Organized guest panels, constructed alumni sector directories, and edited recurring email newsletters and annual growth circulars.
+        </p>
+        <p>
+          <strong>Outcome &amp; Gained Competencies:</strong> Enhanced database management skills and formulated professional correspondence templates, bridging regional networks with active students.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Alumni Engagement</span>
+        <span class="shared-pill">Database Maintenance</span>
+        <span class="shared-pill">Strategic Communications</span>
+        <span class="shared-pill">Event Execution</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: EdZpace -->
+  <div class="modal-overlay" id="modal-edzpace">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Expanded View &middot; Human Resources</span>
+      <h3 class="modal-title">Human Resources Intern &middot; EdZpace</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Role &amp; Responsibility:</strong> Handled remote intern recruitment, onboarding documentation, and applicant tracking flows for international roles.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Key Contributions:</strong> Filtered profiles, coordinated calendar invites for panel interviews, and checked verification logs for international hires.
+        </p>
+        <p>
+          <strong>Outcome &amp; Gained Competencies:</strong> Developed a systemic understanding of hiring funnels, HR tracking platforms, and cross-border team synchronization.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Talent Acquisition</span>
+        <span class="shared-pill">Remote Onboarding</span>
+        <span class="shared-pill">HR Operations</span>
+        <span class="shared-pill">Database Systems</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Empyrean -->
+  <div class="modal-overlay" id="modal-empyrean">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Expanded View &middot; Marketing &amp; Branding</span>
+      <h3 class="modal-title">Creatives Team Member &middot; Empyrean</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Role &amp; Responsibility:</strong> Designed marketing collateral, digital posts, and visual themes for IIM Jammu's flagship cultural festival.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Key Contributions:</strong> Prepared social media roll-out maps, created high-conversion visual flyers, and aligned designs with event sponsor guidelines.
+        </p>
+        <p>
+          <strong>Outcome &amp; Gained Competencies:</strong> Grew branding outreach counts through creative design execution, fostering tight synergy with logistics and media groups.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Graphic Design</span>
+        <span class="shared-pill">Social Media Marketing</span>
+        <span class="shared-pill">Event Branding</span>
+        <span class="shared-pill">Brand Consistency</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP and Lenis Scroll Smoothers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+  <script>
+    // Smooth Scroll Initialisation
+    if (typeof Lenis !== 'undefined') {
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    // Mobile Navigation Drawer Toggle
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('mobile-active');
+      mobileToggle.classList.toggle('active');
+    });
+
+    // Timeline Animation (GSAP)
+    gsap.from('.exp-intro', { opacity: 0, y: 30, duration: 1 });
+    gsap.from('.timeline-item', { opacity: 0, y: 40, stagger: 0.2, duration: 0.8, delay: 0.2 });
+
+    // Modal Triggers
+    const cards = document.querySelectorAll('.timeline-card');
+    const overlays = document.querySelectorAll('.modal-overlay');
+    const closeButtons = document.querySelectorAll('.close-btn');
+
+    let activeCard = null;
+    let activeModal = null;
+
+    function openModal(card, targetModal) {
+      if (targetModal) {
+        targetModal.classList.add('active');
+        activeCard = card;
+        activeModal = targetModal;
+        window.addEventListener('scroll', closeAllModals, { passive: true });
+      }
+    }
+
+    function closeAllModals() {
+      overlays.forEach(overlay => overlay.classList.remove('active'));
+      activeCard = null;
+      activeModal = null;
+      window.removeEventListener('scroll', closeAllModals);
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const modalId = card.getAttribute('data-modal');
+        const targetModal = document.getElementById(modalId);
+        openModal(card, targetModal);
+      });
+    });
+
+    // Auto-expand all experience cards on 1-second hover
+    cards.forEach(card => {
+      let hoverTimeout;
+      card.addEventListener('mouseenter', () => {
+        hoverTimeout = setTimeout(() => {
+          const modalId = card.getAttribute('data-modal');
+          const targetModal = document.getElementById(modalId);
+          if (targetModal && !targetModal.classList.contains('active')) {
+            openModal(card, targetModal);
+          }
+        }, 500); // 500ms
+      });
+
+      card.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimeout);
+      });
+
+      card.addEventListener('click', () => {
+        clearTimeout(hoverTimeout);
+      });
+    });
+
+    // Close modal on hover-out of both the card and the modal content box
+    document.addEventListener('mousemove', (e) => {
+      if (!activeModal || !activeCard) return;
+
+      const cardRect = activeCard.getBoundingClientRect();
+      const modalContent = activeModal.querySelector('.modal-content');
+      const modalRect = modalContent.getBoundingClientRect();
+
+      const x = e.clientX;
+      const y = e.clientY;
+
+      // Check if cursor is inside card bounds (with 15px buffer)
+      const insideCard = (
+        x >= cardRect.left - 15 &&
+        x <= cardRect.right + 15 &&
+        y >= cardRect.top - 15 &&
+        y <= cardRect.bottom + 15
+      );
+
+      // Check if cursor is inside modal bounds (with 15px buffer)
+      const insideModal = (
+        x >= modalRect.left - 15 &&
+        x <= modalRect.right + 15 &&
+        y >= modalRect.top - 15 &&
+        y <= modalRect.bottom + 15
+      );
+
+      if (!insideCard && !insideModal) {
+        closeAllModals();
+      }
+    });
+
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllModals();
+      });
+    });
+
+    overlays.forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          closeAllModals();
+        }
+      });
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAllModals();
+      }
+    });
+  </script>
+</body>
+</html>

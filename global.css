@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #ffffff;
+  --primary-dim: #cccccc;
+  --primary-glow: rgba(255, 255, 255, 0.15);
+  --bg-dark: #050505;
+  --bg-card: rgba(15, 15, 15, 0.95);
+  --bg-surface: rgba(20, 20, 20, 0.9);
+  --text-primary: #ffffff;
+  --text-muted: #888888;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-primary: rgba(255, 255, 255, 0.2);
+  --font-main: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --shadow-card: 0 20px 50px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.08);
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  scroll-behavior: auto; /* Handled by Lenis in JS if loaded */
+}
+
+body {
+  overflow-x: hidden;
+  line-height: 1.6;
+  background: var(--bg-dark);
+}
+
+/* ============================================================
+   SCROLLBAR STYLING
+============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================
+   SHARED LAYOUT ELEMENTS
+============================================================ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.section-spacing {
+  padding: 8rem 0;
+}
+
+/* ============================================================
+   NAVIGATION HEADER (GLASSMORPHISM)
+============================================================ */
+.global-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: var(--transition-smooth);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo-signature {
+  height: 76px;
+  width: auto;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.logo-link:hover .logo-signature {
+  transform: scale(1.05);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: var(--transition-smooth);
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #ffffff;
+  transition: var(--transition-smooth);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobile-nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  margin: 4px 0;
+  transition: var(--transition-smooth);
+}
+
+/* ============================================================
+   SHARED CARDS & COMPONENTS
+============================================================ */
+.glass-card {
+  background: rgba(15, 15, 15, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+.gradient-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 30%, #888888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.card-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 1.5rem 0;
+}
+
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.shared-pill {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  transition: var(--transition-smooth);
+}
+
+.shared-pill:hover {
+  border-color: var(--border-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================================
+   UTILITY STYLES
+============================================================ */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  .section-spacing {
+    padding: 6rem 0;
+  }
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 2.5rem 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 1.5rem;
+    align-items: flex-start;
+    z-index: 99;
+  }
+  .nav-menu.mobile-active {
+    display: flex;
+  }
+  .mobile-nav-toggle {
+    display: block;
+  }
+  .mobile-nav-toggle.active span:nth-child(1) {
+    transform: translateY(3px) rotate(45deg);
+  }
+  .mobile-nav-toggle.active span:nth-child(2) {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+}
+
+/* Custom Category Badge Glow Colors */
+.badge-green {
+  background: rgba(46, 204, 113, 0.1) !important;
+  color: #2ecc71 !important;
+  border: 1px solid rgba(46, 204, 113, 0.25) !important;
+}
+
+.badge-blue {
+  background: rgba(52, 152, 219, 0.1) !important;
+  color: #3498db !important;
+  border: 1px solid rgba(52, 152, 219, 0.25) !important;
+}
+
+.badge-purple {
+  background: rgba(155, 89, 182, 0.1) !important;
+  color: #9b59b6 !important;
+  border: 1px solid rgba(155, 89, 182, 0.25) !important;
+}
+
+.badge-red {
+  background: rgba(231, 76, 60, 0.1) !important;
+  color: #e74c3c !important;
+  border: 1px solid rgba(231, 76, 60, 0.25) !important;
+}
+
+.badge-cyan {
+  background: rgba(26, 188, 156, 0.1) !important;
+  color: #1abc9c !important;
+  border: 1px solid rgba(26, 188, 156, 0.25) !important;
+}
+
+.badge-orange {
+  background: rgba(230, 126, 34, 0.1) !important;
+  color: #e67e22 !important;
+  border: 1px solid rgba(230, 126, 34, 0.25) !important;
+}

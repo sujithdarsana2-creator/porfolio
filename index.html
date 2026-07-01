@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me | Akas D Sujith</title>
+  <meta name="description" content="Personal portfolio of Akas D Sujith - IPM Student at IIM Jammu, specializing in management, analytics, and organizational operations.">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    /* Hero Layout */
+    .hero-wrapper {
+      position: relative;
+    }
+    
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .hero-text h1 {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      font-family: var(--font-display);
+    }
+    
+    .hero-bio {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      max-width: 580px;
+    }
+    
+    /* Stats Layout */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .stat-box {
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(20, 20, 20, 0.3);
+      padding: 1.75rem;
+      border-radius: 12px;
+      transition: var(--transition-smooth);
+    }
+    
+    .stat-box:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+
+
+    /* Radial Dark Background */
+    body {
+      background: radial-gradient(circle at center, #0a0a14 0%, #030303 100%) !important;
+    }
+    
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+    
+    .stat-desc {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    
+    /* CTA buttons */
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: var(--bg-dark);
+      border: 1px solid var(--primary);
+    }
+    
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--text-primary);
+      box-shadow: 0 0 15px rgba(255,255,255,0.15);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--primary);
+    }
+
+    /* Premium Animated LinkedIn Button */
+    .linkedin-animated-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.6rem;
+      background: linear-gradient(135deg, #0077b5 0%, #004b87 100%);
+      color: #ffffff !important;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 119, 181, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    .linkedin-animated-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+      );
+      transform: skewX(-25deg);
+      transition: none;
+    }
+    
+    .linkedin-animated-btn:hover {
+      background: linear-gradient(135deg, #008be2 0%, #005fa6 100%);
+      box-shadow: 0 8px 25px rgba(0, 119, 181, 0.45);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    
+    .linkedin-animated-btn:hover::before {
+      left: 150%;
+      transition: all 0.75s ease-in-out;
+    }
+    
+    .linkedin-animated-btn:active {
+      box-shadow: 0 4px 10px rgba(0, 119, 181, 0.3);
+    }
+    
+    .linkedin-animated-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .linkedin-animated-btn:hover svg {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    /* Phone & WhatsApp interactive expand container */
+    .phone-interactive-wrapper {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .phone-expanded-buttons {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .phone-trigger-btn, .phone-btn, .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      font-family: inherit;
+      box-sizing: border-box;
+      background: rgba(46, 204, 113, 0.1) !important;
+      border: 1px solid rgba(46, 204, 113, 0.3) !important;
+      color: #2ecc71 !important;
+      box-shadow: 0 4px 15px rgba(46, 204, 113, 0.15);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      text-decoration: none;
+    }
+    
+    .phone-trigger-btn::before, .phone-btn::before, .whatsapp-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+      );
+      transform: skewX(-25deg);
+      transition: none;
+    }
+    
+    .phone-trigger-btn:hover, .phone-btn:hover, .whatsapp-btn:hover {
+      background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 8px 25px rgba(46, 204, 113, 0.45);
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+    
+    .phone-trigger-btn:hover::before, .phone-btn:hover::before, .whatsapp-btn:hover::before {
+      left: 150%;
+      transition: all 0.75s ease-in-out;
+    }
+    
+    .phone-trigger-btn svg, .phone-btn svg, .whatsapp-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+      transition: transform 0.3s;
+    }
+    
+    .phone-trigger-btn:hover svg, .phone-btn:hover svg {
+      animation: wiggle-btn 0.5s ease-in-out infinite alternate;
+    }
+    
+    .whatsapp-btn:hover svg {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    /* Email interactive expand container */
+    .mail-interactive-wrapper {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .mail-expanded-buttons {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .mail-trigger-btn, .mail-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      font-family: inherit;
+      box-sizing: border-box;
+      background: rgba(231, 76, 60, 0.1) !important;
+      border: 1px solid rgba(231, 76, 60, 0.3) !important;
+      color: #e74c3c !important;
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.15);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      text-decoration: none;
+    }
+    
+    .mail-trigger-btn::before, .mail-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+      );
+      transform: skewX(-25deg);
+      transition: none;
+    }
+    
+    .mail-trigger-btn:hover, .mail-btn:hover {
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 8px 25px rgba(231, 76, 60, 0.45);
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+    
+    .mail-trigger-btn:hover::before, .mail-btn:hover::before {
+      left: 150%;
+      transition: all 0.75s ease-in-out;
+    }
+    
+    .mail-trigger-btn svg, .mail-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+      transition: transform 0.3s;
+    }
+    
+    .mail-trigger-btn:hover svg, .mail-btn:hover svg {
+      animation: wiggle-btn 0.5s ease-in-out infinite alternate;
+    }
+    
+    @keyframes wiggle-btn {
+      0% { transform: rotate(-8deg) scale(1.15); }
+      100% { transform: rotate(8deg) scale(1.15); }
+    }
+    
+    /* Child element pointer-event override to block click interference */
+    .phone-trigger-btn *, .phone-btn *, .whatsapp-btn *, .mail-trigger-btn *, .mail-btn * {
+      pointer-events: none !important;
+    }
+
+    /* Floating copy toast notification style */
+    .copy-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(15, 15, 15, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 30px;
+      padding: 0.8rem 1.6rem;
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .copy-toast-email {
+      color: #e74c3c; /* Red accent color */
+      font-weight: 700;
+    }
+
+    .hero-wrapper .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      min-height: calc(100vh - 4.5rem); /* Centers the grid vertically on the screen */
+      box-sizing: border-box;
+    }
+
+    .stats-section {
+      padding: 1.5rem 0 4rem 0; /* Snug top/bottom paddings for stats dashboard */
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-right-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .hero-avatar-wrapper {
+      position: relative;
+      width: 360px;
+      height: 360px;
+    }
+    
+    /* Rotating gradient orb ring */
+    .hero-avatar-ring {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0077b5, #004b87, #00b587);
+      z-index: 1;
+      animation: spin-ring 8s linear infinite;
+      opacity: 0.8;
+      filter: blur(3px);
+    }
+    
+    @keyframes spin-ring {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .hero-avatar-img {
+      position: relative;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      border: 6px solid var(--bg-dark);
+      object-fit: cover;
+      z-index: 2;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    /* Hover micro-animation */
+    .hero-avatar-wrapper:hover .hero-avatar-img {
+      transform: scale(1.03);
+    }
+    
+    .hero-avatar-wrapper:hover .hero-avatar-ring {
+      filter: blur(5px) brightness(1.2);
+      animation-duration: 5s;
+    }
+
+    /* Horizontal stats dashboard below fold */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    @media (max-width: 990px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .hero-right-col {
+        order: -1;
+      }
+      .hero-text {
+        order: 1;
+        text-align: center;
+        max-width: 100%;
+      }
+      .hero-text .hero-bio {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-row {
+        justify-content: center;
+      }
+      .hero-avatar-wrapper {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+      }
+      .hero-avatar-img {
+        width: 280px;
+        height: 280px;
+      }
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 1rem;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .hero-avatar-wrapper {
+        width: 200px;
+        height: 200px;
+      }
+      .hero-avatar-img {
+        width: 200px;
+        height: 200px;
+      }
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Glassmorphism Header -->
+  <header class="global-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="signature.png" alt="Akas D Sujith Signature" class="logo-signature">
+      </a>
+      <button class="mobile-nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active">About</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="internships.html" class="nav-link">Experience</a></li>
+          <li><a href="academic-journey.html" class="nav-link">Academic Journey</a></li>
+          <li><a href="linkedin.html" class="nav-link">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero & About Me Section -->
+  <main class="hero-wrapper">
+    <div class="container">
+      <div class="hero-content">
+        <!-- Text intro -->
+        <div class="hero-text">
+          <span class="section-label">IPM Student at IIM Jammu</span>
+          <h1 class="gradient-title">Akas D Sujith</h1>
+          <p class="hero-subtitle">Management &middot; Strategy &middot; Data Analytics</p>
+          <p class="hero-bio">
+            I am a student in the Integrated Programme in Management (IPM) at the Indian Institute of Management Jammu (IIM Jammu). Combining academic foundations in economics, business strategy, and decision sciences with analytical database utilities (Python, SQL), I focus on optimizing organizational systems. My roles as Class Representative and Event Coordinator bridge communication gaps and drive team execution.
+          </p>
+          <div class="cta-row">
+            <div class="phone-interactive-wrapper" id="phone-interactive">
+              <!-- Main Trigger Button -->
+              <button class="btn btn-primary phone-trigger-btn" id="phone-expand-trigger">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1 22 16.92z"/></svg>
+                Call / WhatsApp
+              </button>
+              
+              <!-- Expanded Standalone Buttons (Initially Hidden) -->
+              <div class="phone-expanded-buttons" id="phone-expanded-row" style="display: none; opacity: 0; gap: 0.75rem;">
+                <a href="tel:+918848177273" class="btn btn-primary phone-btn" id="call-mobile-btn">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem; vertical-align: middle;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  Call Mobile
+                </a>
+                <a href="https://wa.me/+918848177273" target="_blank" rel="noopener noreferrer" class="btn btn-primary whatsapp-btn" id="whatsapp-chat-btn">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="margin-right: 0.5rem; vertical-align: middle;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 11.81 0c3.142.001 6.094 1.22 8.317 3.441 2.222 2.22 3.441 5.172 3.44 8.312-.005 6.486-5.33 11.812-11.814 11.812-2.004-.001-3.973-.51-5.729-1.486L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.45 5.247 0 9.518-4.268 9.52-9.51 0-2.537-.992-4.925-2.793-6.73C16.29 2.54 13.9 1.547 11.813 1.547 6.566 1.547 2.29 5.82 2.288 11.07c-.001 1.7.464 3.354 1.343 4.887l-.997 3.642 3.734-.979zM15.726 13.04c-.302-.15-1.785-.88-2.063-.982-.277-.1-.478-.15-.678.15-.2.3-.775.98-1.002 1.24-.227.25-.454.28-.755.13-3.66-1.82-4.484-4.57-4.79-5.1-.3-.5-.03-.77.22-1.02.227-.22.454-.53.68-.8.226-.27.3-.45.454-.75.15-.3.076-.57-.038-.8-.113-.23-.977-2.35-1.34-3.23-.353-.85-.713-.73-.977-.73-.25 0-.53-.015-.8-.015-.273 0-.715.1-1.09.5-.375.4-1.428 1.4-1.428 3.4 0 2 1.453 3.93 1.655 4.2.2.27 2.85 4.35 6.9 6.1 2.45 1.05 3.5 1.35 4.75 1.2 1.35-.15 2.785-.88 3.187-1.75.402-.87.402-1.61.278-1.75-.125-.15-.478-.25-.78-.4z"/></svg>
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+            
+            <div class="mail-interactive-wrapper" id="mail-interactive">
+              <!-- Main Trigger Button -->
+              <button class="btn btn-secondary mail-trigger-btn" id="mail-expand-trigger">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Email Contact
+              </button>
+              
+              <!-- Expanded Standalone Buttons (Initially Hidden) -->
+              <div class="mail-expanded-buttons" id="mail-expanded-row" style="display: none; opacity: 0; gap: 0.75rem;">
+                <a href="mailto:ipm25012@iimj.ac.in" class="btn btn-secondary mail-btn" id="inst-mail-btn">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  Institutional Mail
+                </a>
+                <a href="mailto:akas@akasdsujith.in" class="btn btn-secondary mail-btn" id="pers-mail-btn">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  Personal Mail
+                </a>
+              </div>
+            </div>
+
+            <a href="https://www.linkedin.com/in/akasdsujith/" target="_blank" rel="noopener noreferrer" class="linkedin-animated-btn">
+              <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+              Let's Connect
+            </a>
+          </div>
+        </div>
+        <!-- Right Column: Centered Large Avatar -->
+        <div class="hero-right-col">
+          <div class="hero-avatar-wrapper">
+            <div class="hero-avatar-ring"></div>
+            <img src="akas_avatar.png" alt="Akas D Sujith Profile" class="hero-avatar-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+  <!-- GSAP and Lenis Engines -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+  <script>
+    // Smooth Scroll Initialisation (Lenis)
+    if (typeof Lenis !== 'undefined') {
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    // Mobile Navigation Drawer Toggle
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('mobile-active');
+      mobileToggle.classList.toggle('active');
+    });
+
+    // Hero Entry Animation (GSAP)
+    if (typeof gsap !== 'undefined') {
+      gsap.from('.section-label', { opacity: 0, y: 15, duration: 0.8, delay: 0.1 });
+      gsap.from('h1', { opacity: 0, y: 30, duration: 1, delay: 0.2 });
+      gsap.from('.hero-subtitle', { opacity: 0, y: 15, duration: 0.8, delay: 0.4 });
+      gsap.from('.hero-bio', { opacity: 0, y: 15, duration: 0.8, delay: 0.5 });
+      gsap.from('.cta-row', { opacity: 0, y: 15, duration: 0.8, delay: 0.6 });
+      gsap.from('.hero-avatar-wrapper', { opacity: 0, scale: 0.7, duration: 1.2, delay: 0.3, ease: 'back.out(1.5)' });
+    }
+
+
+
+    // GSAP Magnetic Button implementation (for LinkedIn, Mail, and Phone/WhatsApp buttons)
+    if (typeof gsap !== 'undefined') {
+      const magneticElements = document.querySelectorAll('.linkedin-animated-btn, #phone-expand-trigger, #mail-expand-trigger');
+      magneticElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+          const bound = el.getBoundingClientRect();
+          const x = e.clientX - bound.left - (bound.width / 2);
+          const y = e.clientY - bound.top - (bound.height / 2);
+          
+          gsap.to(el, {
+            x: x * 0.35,
+            y: y * 0.35,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          gsap.to(el, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: 'elastic.out(1, 0.3)'
+          });
+        });
+      });
+    }
+
+    // Phone / WhatsApp interactive row expander
+    const phoneExpandTrigger = document.getElementById('phone-expand-trigger');
+    const phoneExpandedRow    = document.getElementById('phone-expanded-row');
+    
+    function collapsePhoneRow() {
+      if (phoneExpandTrigger && phoneExpandTrigger.style.display === 'none') {
+        gsap.to(phoneExpandedRow, {
+          opacity: 0,
+          scale: 0.85,
+          duration: 0.25,
+          onComplete: () => {
+            phoneExpandedRow.style.display = 'none';
+            phoneExpandTrigger.style.display = 'inline-flex';
+            gsap.fromTo(phoneExpandTrigger,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 0.25, ease: 'power2.out' }
+            );
+          }
+        });
+      }
+    }
+
+    if (phoneExpandTrigger && phoneExpandedRow) {
+      phoneExpandTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Collapse email interactive if active
+        collapseMailRow();
+        
+        gsap.to(phoneExpandTrigger, {
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.25,
+          onComplete: () => {
+            phoneExpandTrigger.style.display = 'none';
+            phoneExpandedRow.style.display = 'inline-flex';
+            gsap.fromTo(phoneExpandedRow,
+              { opacity: 0, scale: 0.85 },
+              { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(1.2)' }
+            );
+          }
+        });
+      });
+      
+      // Auto collapse when clicking outside
+      document.addEventListener('click', (e) => {
+        const interactiveWrapper = document.getElementById('phone-interactive');
+        if (interactiveWrapper && !interactiveWrapper.contains(e.target)) {
+          collapsePhoneRow();
+        }
+      });
+    }
+
+    // Email interactive row expander
+    const mailExpandTrigger = document.getElementById('mail-expand-trigger');
+    const mailExpandedRow    = document.getElementById('mail-expanded-row');
+    
+    function collapseMailRow() {
+      if (mailExpandTrigger && mailExpandTrigger.style.display === 'none') {
+        gsap.to(mailExpandedRow, {
+          opacity: 0,
+          scale: 0.85,
+          duration: 0.25,
+          onComplete: () => {
+            mailExpandedRow.style.display = 'none';
+            mailExpandTrigger.style.display = 'inline-flex';
+            gsap.fromTo(mailExpandTrigger,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 0.25, ease: 'power2.out' }
+            );
+          }
+        });
+      }
+    }
+
+    if (mailExpandTrigger && mailExpandedRow) {
+      mailExpandTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Collapse phone interactive if active
+        collapsePhoneRow();
+        
+        gsap.to(mailExpandTrigger, {
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.25,
+          onComplete: () => {
+            mailExpandTrigger.style.display = 'none';
+            mailExpandedRow.style.display = 'inline-flex';
+            gsap.fromTo(mailExpandedRow,
+              { opacity: 0, scale: 0.85 },
+              { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(1.2)' }
+            );
+          }
+        });
+      });
+      
+      // Auto collapse when clicking outside
+      document.addEventListener('click', (e) => {
+        const interactiveWrapper = document.getElementById('mail-interactive');
+        if (interactiveWrapper && !interactiveWrapper.contains(e.target)) {
+          collapseMailRow();
+        }
+      });
+    }
+
+    // Copy to clipboard helper for mail buttons (using floating toast notification)
+    const instMailBtn = document.getElementById('inst-mail-btn');
+    const persMailBtn = document.getElementById('pers-mail-btn');
+
+    function showCopyToast(email) {
+      let toast = document.getElementById('copy-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'copy-toast';
+        toast.className = 'copy-toast';
+        document.body.appendChild(toast);
+      }
+      
+      toast.innerHTML = `<span>Copied to clipboard:</span> <span class="copy-toast-email">${email}</span> 📋`;
+      
+      // Force reflow
+      toast.offsetHeight;
+      toast.classList.add('show');
+      
+      if (window.toastTimeout) {
+        clearTimeout(window.toastTimeout);
+      }
+      
+      window.toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    function copyEmailToClipboard(email) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(email).then(() => {
+          showCopyToast(email);
+        });
+      } else {
+        const tempInput = document.createElement('input');
+        tempInput.value = email;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        showCopyToast(email);
+      }
+    }
+
+    if (instMailBtn) {
+      instMailBtn.addEventListener('click', () => {
+        copyEmailToClipboard('ipm25012@iimj.ac.in');
+      });
+    }
+
+    if (persMailBtn) {
+      persMailBtn.addEventListener('click', () => {
+        copyEmailToClipboard('akas@akasdsujith.in');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Showcase | Akas D Sujith</title>
+  <meta name="description" content="Management, data analytics, and operational simulation projects of Akas D Sujith. IPM student at IIM Jammu.">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    .projects-wrapper {
+      padding-top: 8rem;
+      min-height: 100vh;
+    }
+    
+    .projects-intro {
+      margin-bottom: 4rem;
+      max-width: 700px;
+    }
+    
+    .projects-intro h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .projects-intro p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    
+    /* Project Cards Grid */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 8rem;
+    }
+    
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hover-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.6);
+      transition: none;
+      pointer-events: none;
+    }
+    
+    .project-card:hover .hover-progress-bar {
+      width: 100%;
+      transition: width 0.5s linear;
+    }
+    
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    
+    .project-cta {
+      margin-top: auto;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: fit-content;
+      transition: var(--transition-smooth);
+    }
+    
+    .project-cta:hover {
+      color: var(--text-muted);
+      transform: translateX(4px);
+    }
+    
+    .project-cta svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      fill: none;
+    }
+    
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      padding: 1.5rem;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .modal-content {
+      background: rgba(15, 15, 15, 0.95);
+      border: 1px solid var(--border-primary);
+      border-radius: 24px;
+      max-width: 1200px;
+      width: 90%;
+      padding: 4.5rem;
+      position: relative;
+      transform: scale(0.9) translateY(20px);
+      transition: var(--transition-smooth);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: var(--transition-smooth);
+    }
+    
+    .close-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .close-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.5;
+    }
+    
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    
+    .modal-body {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .project-card {
+        grid-column: span 1 !important; /* Forces span-2 cards to fit mobile width */
+      }
+      .modal-content {
+        padding: 2.5rem 1.5rem;
+        border-radius: 16px;
+      }
+      .modal-title {
+        font-size: 1.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Glassmorphism Header -->
+  <header class="global-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="signature.png" alt="Akas D Sujith Signature" class="logo-signature">
+      </a>
+      <button class="mobile-nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="internships.html" class="nav-link">Experience</a></li>
+          <li><a href="academic-journey.html" class="nav-link">Academic Journey</a></li>
+          <li><a href="linkedin.html" class="nav-link">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Projects Hub -->
+  <main class="projects-wrapper">
+    <div class="container">
+      <!-- Section Intro -->
+      <div class="projects-intro">
+        <span class="section-label">Management Portfolio</span>
+        <h1 class="gradient-title">Projects &amp; Innovation</h1>
+        <p>A collection of database analytics systems, operational simulations, and product designs developed to solve organizational problems.</p>
+      </div>
+      
+      <!-- Cards Grid -->
+      <div class="project-grid">
+        <!-- Project 1 (Self Driving Car) -->
+        <div class="glass-card project-card" data-modal="modal-car">
+          <span class="section-label badge-green" style="margin-bottom: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block;">Robotics &amp; Control</span>
+          <h2 class="project-title">Arduino Uno Self Driving Car</h2>
+          <p class="project-desc">
+            An autonomous vehicular prototype utilizing real-time distance feedbacks and navigation logic loops to simulate self-driving supply chain transport.
+          </p>
+          <div class="pill-container" style="margin-bottom: 1.5rem;">
+            <span class="shared-pill">Arduino Uno</span>
+            <span class="shared-pill">C++ (Arduino IDE)</span>
+            <span class="shared-pill">Obstacle Avoidance</span>
+            <span class="shared-pill">Feedback Systems</span>
+          </div>
+          <div class="project-cta">
+            View Details
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="hover-progress-bar"></div>
+        </div>
+
+        <!-- Project 2 (Smart Dustbin) -->
+        <div class="glass-card project-card" data-modal="modal-bin">
+          <span class="section-label badge-green" style="margin-bottom: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block;">Smart IoT Systems</span>
+          <h2 class="project-title">Ultrasonic Smart Dustbin</h2>
+          <p class="project-desc">
+            A contact-free automated waste container designed with proximity detection and servo actuation to optimize hygiene levels in public domains.
+          </p>
+          <div class="pill-container" style="margin-bottom: 1.5rem;">
+            <span class="shared-pill">Microcontrollers</span>
+            <span class="shared-pill">Distance Sensors</span>
+            <span class="shared-pill">Servo Actuation</span>
+            <span class="shared-pill">Smart Facilities</span>
+          </div>
+          <div class="project-cta">
+            View Details
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="hover-progress-bar"></div>
+        </div>
+
+        <!-- Project 3 (Monte Carlo Simulation) -->
+        <div class="glass-card project-card" data-modal="modal-petrol">
+          <span class="section-label badge-cyan" style="margin-bottom: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block;">Operations Research</span>
+          <h2 class="project-title">Monte Carlo Petrol Pump Simulation</h2>
+          <p class="project-desc">
+            A mathematical data modeling study using random queue distributions to optimize refueling capacity and reduce customer bottleneck times.
+          </p>
+          <div class="pill-container" style="margin-bottom: 1.5rem;">
+            <span class="shared-pill">Monte Carlo Method</span>
+            <span class="shared-pill">Queuing Dynamics</span>
+            <span class="shared-pill">Python Analytics</span>
+            <span class="shared-pill">Capacity Planning</span>
+          </div>
+          <div class="project-cta">
+            View Details
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="hover-progress-bar"></div>
+        </div>
+
+        <!-- Project 4 (Product Development) -->
+        <div class="glass-card project-card" data-modal="modal-prod-dev">
+          <span class="section-label badge-blue" style="margin-bottom: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block;">Product Strategy</span>
+          <h2 class="project-title">Product Development Portfolio</h2>
+          <p class="project-desc">
+            An end-to-end framework translating consumer needs into product wireframes, feature matrices, and development lifecycle trajectories.
+          </p>
+          <div class="pill-container" style="margin-bottom: 1.5rem;">
+            <span class="shared-pill">Product Lifecycle</span>
+            <span class="shared-pill">Feature Prioritization</span>
+            <span class="shared-pill">UI/UX Layouts</span>
+            <span class="shared-pill">Market Research</span>
+          </div>
+          <div class="project-cta">
+            View Details
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="hover-progress-bar"></div>
+        </div>
+
+        <!-- Project 5 (ODOP Marketing) -->
+        <div class="glass-card project-card" data-modal="modal-odop">
+          <span class="section-label badge-purple" style="margin-bottom: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block;">Regional Marketing</span>
+          <h2 class="project-title">Developing an ODOP Product</h2>
+          <p class="project-desc">
+            A localized market strategy study under the One District One Product (ODOP) banner, targeting regional distribution and brand expansions.
+          </p>
+          <div class="pill-container" style="margin-bottom: 1.5rem;">
+            <span class="shared-pill">ODOP Framework</span>
+            <span class="shared-pill">Supply Chain Integration</span>
+            <span class="shared-pill">Brand Development</span>
+            <span class="shared-pill">Growth Strategies</span>
+          </div>
+          <div class="project-cta">
+            View Details
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="hover-progress-bar"></div>
+        </div>
+
+        <!-- Project 6 (Proinet Gummies) -->
+        <div class="glass-card project-card" data-modal="modal-proinet">
+          <span class="section-label badge-purple" style="margin-bottom: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block;">Marketing &amp; GTM</span>
+          <h2 class="project-title">Proinet Gummies</h2>
+          <p class="project-desc">
+            A comprehensive gap-assessment project analyzing client market sectors and defining target positioning for a new gummies wellness line.
+          </p>
+          <div class="pill-container" style="margin-bottom: 1.5rem;">
+            <span class="shared-pill">Market Gap Assessment</span>
+            <span class="shared-pill">Consumer Wellness</span>
+            <span class="shared-pill">GTM Launch Strategy</span>
+            <span class="shared-pill">Competitor Auditing</span>
+          </div>
+          <div class="project-cta">
+            View Details
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="hover-progress-bar"></div>
+        </div>
+
+        <!-- Project 7 (Case Competitions) -->
+        <div class="glass-card project-card" data-modal="modal-cases" id="case-decks-card" style="grid-column: span 2;">
+          <span class="section-label badge-red" style="margin-bottom: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block;">Case Competition Decks</span>
+          <h2 class="project-title">National Strategy Competitions Portfolio</h2>
+          <p class="project-desc">
+            A collection of four pitch-ready business strategy decks solving complex market entries, structural operations, and financial turnarounds (Under construction).
+          </p>
+          <div class="pill-container" style="margin-bottom: 1.5rem;">
+            <span class="shared-pill">Case Studies</span>
+            <span class="shared-pill">Analytical Problem Solving</span>
+            <span class="shared-pill">Corporate Deck Layouts</span>
+            <span class="shared-pill">Strategic Frameworks</span>
+          </div>
+          <div class="project-cta">
+            View Details
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="hover-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modals Overlay Container -->
+  <!-- Modal 1: Self Driving Car -->
+  <div class="modal-overlay" id="modal-car">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Case Study &middot; Robotics &amp; Control</span>
+      <h3 class="modal-title">Arduino Uno Self Driving Car</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Concept &amp; Goal:</strong> To build a physical simulation vehicle chassis to model autonomous product routing, obstacle avoidance, and conveyor logistics inside supply chain nodes.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Implementation Details:</strong> Programmed an Arduino Uno controller to read real-time distances from an ultrasonic sensor. If an obstacle is detected within 30cm, the controller halts the chassis, swivels the sensor to assess clearing widths, and steers the H-bridge motor driver to navigate along the open path.
+        </p>
+        <p>
+          <strong>Outcome:</strong> Successfully demonstrated physical feedback loop concepts and sensor-integrated scheduling algorithms applied to automated logistics.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Arduino Uno</span>
+        <span class="shared-pill">C++ (Arduino IDE)</span>
+        <span class="shared-pill">Operations Logic</span>
+        <span class="shared-pill">Logistics Automation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Smart Dustbin -->
+  <div class="modal-overlay" id="modal-bin">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Case Study &middot; Smart IoT Systems</span>
+      <h3 class="modal-title">Ultrasonic Smart Dustbin</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Concept &amp; Goal:</strong> Prototyped a touchless hygiene device designed to optimize facilities operations, reducing physical contact vectors in high-traffic administrative buildings.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Implementation Details:</strong> Connected a micro-controller to an ultrasonic proximity detector and a SG90 micro-servo. Coded detection loops that trigger a 90-degree servo rotation to lift the container cover via mechanical linkage when hands enter a 20cm range, closing automatically after a 5-second delay.
+        </p>
+        <p>
+          <strong>Outcome:</strong> Constructed a practical product design prototype demonstrating how smart sensor integrations enhance health protocols in corporate and public facilities.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Product Prototyping</span>
+        <span class="shared-pill">Proximity Logic</span>
+        <span class="shared-pill">Facility Operations</span>
+        <span class="shared-pill">Mechanical Linkage</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Monte Carlo Simulation -->
+  <div class="modal-overlay" id="modal-petrol">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Case Study &middot; Operations Research</span>
+      <h3 class="modal-title">Monte Carlo Petrol Pump Simulation</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Concept &amp; Goal:</strong> To evaluate customer queuing delays and dispenser utilization rates at a refueling station to optimize dispenser allocations.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Implementation Details:</strong> Programmed a Python simulation modeling vehicle arrival rates (using Poisson distributions) and service durations. Ran 10,000 Monte Carlo trials simulating bottlenecks, queue length expansions, and pump idle times under different capacity setups.
+        </p>
+        <p>
+          <strong>Outcome:</strong> Provided a capacity expansion strategy showing that adding a third pump reduces peak-hour queue build-ups by 35%, minimizing wait times with optimized capital cost.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Python 3</span>
+        <span class="shared-pill">Monte Carlo Method</span>
+        <span class="shared-pill">Queuing Theory</span>
+        <span class="shared-pill">Operations Analysis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Product Development -->
+  <div class="modal-overlay" id="modal-prod-dev">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Case Study &middot; Product Strategy</span>
+      <h3 class="modal-title">Product Development Portfolio</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Concept &amp; Goal:</strong> Creating structured feature roadmaps and interface definitions to bridge user frustrations with technical development steps.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Implementation Details:</strong> Performed competitive market reviews, analyzed user feedback threads to find core frustrations, built feature prioritization grids (MoSCoW matrix), and drafted mobile UI layout paths to optimize navigation clicks.
+        </p>
+        <p>
+          <strong>Outcome:</strong> Documented product strategy frameworks demonstrating structured UI layouts, backlog management, and prototype wireframe alignments.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Product Lifecycle</span>
+        <span class="shared-pill">Market Gap Audits</span>
+        <span class="shared-pill">MoSCoW Frameworks</span>
+        <span class="shared-pill">UI/UX Wireframes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: ODOP Marketing -->
+  <div class="modal-overlay" id="modal-odop">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Case Study &middot; Regional Marketing</span>
+      <h3 class="modal-title">Developing an ODOP Product</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Concept &amp; Goal:</strong> Formulating a commercialization and logistics strategy to expand local district trade outputs under the governmental One District One Product (ODOP) initiative.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Implementation Details:</strong> Conducted market potential surveys, analyzed local resource supply chains, proposed distributor network models, and formulated GTM branding strategies for district crafts to attract high-value retail channels.
+        </p>
+        <p>
+          <strong>Outcome:</strong> Developed a marketing layout focusing on regional specialty commercialization, local supply chains, and urban retailer positioning.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">ODOP Framework</span>
+        <span class="shared-pill">Regional Distribution</span>
+        <span class="shared-pill">Branding Strategy</span>
+        <span class="shared-pill">Supply Chain Management</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: Proinet Gummies -->
+  <div class="modal-overlay" id="modal-proinet">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Case Study &middot; GTM Strategy</span>
+      <h3 class="modal-title">Proinet Gummies</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Concept &amp; Goal:</strong> Performing consumer wellness sector audits to outline positioning, market launch setups, and ingredient-led branding for a wellness gummy concept.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Implementation Details:</strong> Assessed dietary supplement trends, mapped out active product formulation criteria, structured value matrices (price vs. portion metrics), and defined GTM communication assets.
+        </p>
+        <p>
+          <strong>Outcome:</strong> Formulated a GTM marketing mix addressing transparency, wellness benefits, and competitor-differentiated price points.
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Wellness Marketing</span>
+        <span class="shared-pill">Competitive Auditing</span>
+        <span class="shared-pill">GTM Product Positioning</span>
+        <span class="shared-pill">Consumer Research</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 7: Case Competitions -->
+  <div class="modal-overlay" id="modal-cases">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="section-label">Decks &middot; Corporate Strategy</span>
+      <h3 class="modal-title">National Strategy Competitions Portfolio</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">
+          <strong>Overview:</strong> Four comprehensive pitch decks solving case competition prompts (under development).
+        </p>
+        <p style="margin-bottom: 1rem;">
+          <strong>Structure &amp; Scope:</strong> Slides will cover structured business diagnostics, corporate financial options, digitizing logistics channels, and GTM launch roadmaps for mock business scenarios.
+        </p>
+        <p>
+          <strong>Outcome:</strong> Demonstrates rigorous strategic frameworks, slide design structures, and data-backed business recommendations (Detailed slides to be attached subsequently).
+        </p>
+      </div>
+      <div class="pill-container">
+        <span class="shared-pill">Case Decks</span>
+        <span class="shared-pill">Business Frameworks</span>
+        <span class="shared-pill">GTM &amp; Valuations</span>
+        <span class="shared-pill">Pitch Layouts</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- GSAP and Lenis Scroll Smoothers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+  <script>
+    // Smooth Scroll Initialisation
+    if (typeof Lenis !== 'undefined') {
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    // Mobile Navigation Drawer Toggle
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('mobile-active');
+      mobileToggle.classList.toggle('active');
+    });
+
+    // Modal Triggers
+    const cards = document.querySelectorAll('.project-card');
+    const overlays = document.querySelectorAll('.modal-overlay');
+    const closeButtons = document.querySelectorAll('.close-btn');
+
+    let activeCard = null;
+    let activeModal = null;
+
+    function openModal(card, targetModal) {
+      if (targetModal) {
+        targetModal.classList.add('active');
+        activeCard = card;
+        activeModal = targetModal;
+        window.addEventListener('scroll', closeAllModals, { passive: true });
+      }
+    }
+
+    function closeAllModals() {
+      overlays.forEach(overlay => overlay.classList.remove('active'));
+      activeCard = null;
+      activeModal = null;
+      window.removeEventListener('scroll', closeAllModals);
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const modalId = card.getAttribute('data-modal');
+        const targetModal = document.getElementById(modalId);
+        openModal(card, targetModal);
+      });
+    });
+
+    // Auto-expand all project cards on 1-second hover
+    cards.forEach(card => {
+      let hoverTimeout;
+      card.addEventListener('mouseenter', () => {
+        hoverTimeout = setTimeout(() => {
+          const modalId = card.getAttribute('data-modal');
+          const targetModal = document.getElementById(modalId);
+          if (targetModal && !targetModal.classList.contains('active')) {
+            openModal(card, targetModal);
+          }
+        }, 500); // 500ms
+      });
+
+      card.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimeout);
+      });
+
+      card.addEventListener('click', () => {
+        clearTimeout(hoverTimeout);
+      });
+    });
+
+    // Close modal on hover-out of both the card and the modal content box
+    document.addEventListener('mousemove', (e) => {
+      if (!activeModal || !activeCard) return;
+
+      const cardRect = activeCard.getBoundingClientRect();
+      const modalContent = activeModal.querySelector('.modal-content');
+      const modalRect = modalContent.getBoundingClientRect();
+
+      const x = e.clientX;
+      const y = e.clientY;
+
+      // Check if cursor is inside card bounds (with 15px buffer)
+      const insideCard = (
+        x >= cardRect.left - 15 &&
+        x <= cardRect.right + 15 &&
+        y >= cardRect.top - 15 &&
+        y <= cardRect.bottom + 15
+      );
+
+      // Check if cursor is inside modal bounds (with 15px buffer)
+      const insideModal = (
+        x >= modalRect.left - 15 &&
+        x <= modalRect.right + 15 &&
+        y >= modalRect.top - 15 &&
+        y <= modalRect.bottom + 15
+      );
+
+      if (!insideCard && !insideModal) {
+        closeAllModals();
+      }
+    });
+
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllModals();
+      });
+    });
+
+    overlays.forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          closeAllModals();
+        }
+      });
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAllModals();
+      }
+    });
+
+    // Intro Entrance Animation
+    gsap.from('.projects-intro', { opacity: 0, y: 30, duration: 1 });
+
+    // Scroll-driven Staggered Card Reveals
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      const projectCards = document.querySelectorAll('.project-card');
+      projectCards.forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 0,
+          y: 50,
+          scale: 0.95,
+          duration: 0.7,
+          ease: 'power2.out',
+          delay: (index % 2) * 0.1 // Small stagger between columns
+        });
+      });
+    } else {
+      // Fallback
+      gsap.from('.project-card', { opacity: 0, y: 40, stagger: 0.15, duration: 0.8, delay: 0.2 });
+    }
+  </script>
+</body>
+</html>

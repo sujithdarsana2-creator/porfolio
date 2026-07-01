@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills &amp; Expertise | Akas D Sujith</title>
+  <meta name="description" content="Management, strategy, decision science, and data analytics skills of Akas D Sujith. IPM student at IIM Jammu.">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    .skills-wrapper {
+      padding-top: 8rem;
+      min-height: 100vh;
+    }
+    
+    .skills-intro {
+      margin-bottom: 4rem;
+      max-width: 700px;
+    }
+    
+    .skills-intro h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .skills-intro p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    
+    /* Skill Card Details */
+    .skill-card-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+    
+    .skill-item {
+      margin-bottom: 1.5rem;
+    }
+    
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .skill-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary-dim);
+    }
+    
+    .skill-percentage {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .skill-bar-track {
+      height: 4px;
+      background: var(--border-subtle);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 0.4rem;
+    }
+    
+    .skill-bar-fill {
+      height: 100%;
+      background: #ffffff;
+      border-radius: 2px;
+      width: 0%; /* Animated via GSAP */
+      box-shadow: 0 0 8px #ffffff;
+    }
+    
+    .skill-details {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Glassmorphism Header -->
+  <header class="global-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="signature.png" alt="Akas D Sujith Signature" class="logo-signature">
+      </a>
+      <button class="mobile-nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link active">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="internships.html" class="nav-link">Experience</a></li>
+          <li><a href="academic-journey.html" class="nav-link">Academic Journey</a></li>
+          <li><a href="linkedin.html" class="nav-link">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Skills Content -->
+  <main class="skills-wrapper">
+    <div class="container">
+      <!-- Section Intro -->
+      <div class="skills-intro">
+        <span class="section-label">Capabilities Dashboard</span>
+        <h1 class="gradient-title">Skills &amp; Expertise</h1>
+        <p>A multi-disciplinary breakdown of my core competencies, balancing business management, data analytics tools, and decision systems.</p>
+      </div>
+      
+      <!-- Skills Columns -->
+      <div class="grid-3">
+        <!-- Column 1: Management & Strategy -->
+        <div class="glass-card">
+          <h2 class="skill-card-title">Management &amp; Strategy</h2>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Class Leadership &amp; Liaison</span>
+              <span class="skill-percentage">95%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="95%"></div>
+            </div>
+            <p class="skill-details">Served as Class Representative; managed communication logs, scheduling, and student-faculty relations.</p>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Event Logistics &amp; Planning</span>
+              <span class="skill-percentage">88%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="88%"></div>
+            </div>
+            <p class="skill-details">Coordinating school Annual Fest activities, timeline logs, volunteer duties, and resource execution.</p>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Presentation &amp; Speaking</span>
+              <span class="skill-percentage">85%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="85%"></div>
+            </div>
+            <p class="skill-details">Structuring strategic reports, presenting pitches, and representing school in state-level forums.</p>
+          </div>
+        </div>
+        
+        <!-- Column 2: Data Analytics & Tools -->
+        <div class="glass-card">
+          <h2 class="skill-card-title">Data Analytics &amp; Tools</h2>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">SQL Database Operations</span>
+              <span class="skill-percentage">80%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="80%"></div>
+            </div>
+            <p class="skill-details">Structuring relational queries, managing records tables, and querying operational data logs.</p>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Python Programming</span>
+              <span class="skill-percentage">80%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="80%"></div>
+            </div>
+            <p class="skill-details">Logical scripting, algorithm calculations, data filtering, and decision analytics.</p>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Data Modeling &amp; Reporting</span>
+              <span class="skill-percentage">75%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="75%"></div>
+            </div>
+            <p class="skill-details">Logging quantitative metrics, analyzing spreadsheets, and charting business/operational trends.</p>
+          </div>
+        </div>
+        
+        <!-- Column 3: Decision Sciences & Core -->
+        <div class="glass-card">
+          <h2 class="skill-card-title">Decision Sciences &amp; Core</h2>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Advanced Mathematics</span>
+              <span class="skill-percentage">85%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="85%"></div>
+            </div>
+            <p class="skill-details">Calculus, algebraic structures, statistical models, and logical/analytical reasoning.</p>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Microeconomics Frameworks</span>
+              <span class="skill-percentage">80%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="80%"></div>
+            </div>
+            <p class="skill-details">Core market frameworks, supply-demand relationships, price dynamics, and consumer theory.</p>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Systems Prototyping</span>
+              <span class="skill-percentage">75%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="75%"></div>
+            </div>
+            <p class="skill-details">Basic microcontroller integrations (Arduino sensors, servo gates) representing physical automation logistics.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Areas of Interest Pills -->
+      <div class="glass-card" style="margin-top: 3rem; margin-bottom: 8rem;">
+        <span class="section-label">Future Focus</span>
+        <h2 class="skill-card-title" style="margin-bottom: 1rem;">Primary Areas of Interest</h2>
+        <div class="pill-container">
+          <span class="shared-pill">Strategic Management</span>
+          <span class="shared-pill">Operations &amp; Logistics</span>
+          <span class="shared-pill">Business Data Analytics</span>
+          <span class="shared-pill">Decision Sciences</span>
+          <span class="shared-pill">Microeconomics</span>
+          <span class="shared-pill">Systems Automation</span>
+          <span class="shared-pill">Fine Arts &amp; Design</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- GSAP and Lenis Scroll Smoothers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+  <script>
+    // Smooth Scroll Initialisation
+    if (typeof Lenis !== 'undefined') {
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    // Mobile Navigation Drawer Toggle
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('mobile-active');
+      mobileToggle.classList.toggle('active');
+    });
+
+    // Skills Animation
+    gsap.from('.skills-intro', { opacity: 0, y: 30, duration: 1 });
+    gsap.from('.glass-card', { opacity: 0, y: 40, stagger: 0.15, duration: 0.8, delay: 0.2 });
+    
+    // Animate progress bars on load
+    document.querySelectorAll('.skill-bar-fill').forEach(fill => {
+      const targetWidth = fill.getAttribute('data-width');
+      gsap.to(fill, {
+        width: targetWidth,
+        duration: 1.4,
+        ease: 'power3.out',
+        delay: 0.6
+      });
+    });
+  </script>
+</body>
+</html>
